@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ..:/workspace:cached
+      - ~/.ssh:/root/.ssh
+    command: sleep infinity
