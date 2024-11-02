@@ -1,0 +1,21 @@
+@import "@/styles/mixins.scss";
+
+.mainMenu {
+	padding: 2em;
+	@include flex(row, space-between);
+	width: 100%;
+	margin: auto;
+	background-color: black;
+
+	.name {
+		color: white;
+	}
+
+	.links {
+		@include flex(row, space-between, flex-start, 4vw);
+
+		a {
+			color: white;
+		}
+	}
+}

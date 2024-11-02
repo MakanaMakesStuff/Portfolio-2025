@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Antonio:wght@100..700&display=swap");
+
+.antonio {
+	font-family: "Antonio", sans-serif;
+	font-optical-sizing: auto;
+	font-style: normal;
+}
+
+.anonymous-pro {
+	font-family: "Anonymous Pro", monospace;
+	font-weight: 400;
+	font-style: normal;
+}
+
+.anonymous-pro-bold {
+	font-family: "Anonymous Pro", monospace;
+	font-weight: 700;
+	font-style: normal;
+}
+
+.anonymous-pro-regular-italic {
+	font-family: "Anonymous Pro", monospace;
+	font-weight: 400;
+	font-style: italic;
+}
+
+.anonymous-pro-bold-italic {
+	font-family: "Anonymous Pro", monospace;
+	font-weight: 700;
+	font-style: italic;
+}
+
+.cap-width {
+	max-width: 1600px;
+}
