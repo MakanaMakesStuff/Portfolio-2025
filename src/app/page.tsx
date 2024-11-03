@@ -4,10 +4,16 @@ import client from "@/utilities/Apollo"
 import { gql } from "@apollo/client"
 import Spinner from "@/components/Spinner"
 import Border from "@/components/Border"
+import Splash from "@/components/Splash"
 
 export interface PageI {
 	id: string
 	content: string
+	featuredImage: {
+		node: {
+			mediaItemUrl: string
+		}
+	}
 	title: string
 	children: {
 		nodes: PageI[]
@@ -29,18 +35,28 @@ export default async function Home() {
 					<Spinner className={style.loader} />
 				) : (
 					<OnScroll animation="fadeInBottom" id="hero" threshold={0}>
-						<div
-							id="hero"
-							className={style.content}
-							dangerouslySetInnerHTML={{ __html: page?.content }}
-						></div>
+						<div id="hero" className={style.content}>
+							<div
+								dangerouslySetInnerHTML={{ __html: page?.content }}
+								className={style.text}
+							/>
+						</div>
 					</OnScroll>
 				)}
-				<Border variant="purple" />
 			</main>
 
-			{page?.children?.nodes?.map((item) => {
-				return (
+			{page?.children?.nodes?.map((item, i) => {
+				const splash = i % 2 == 0
+
+				return splash ? (
+					<Splash key={item.id}>
+						<section
+							className={style.light}
+							dangerouslySetInnerHTML={{ __html: item.content }}
+							key={item.id}
+						/>
+					</Splash>
+				) : (
 					<section
 						className={style.light}
 						dangerouslySetInnerHTML={{ __html: item.content }}
