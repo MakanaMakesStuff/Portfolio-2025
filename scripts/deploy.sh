@@ -10,7 +10,8 @@ fi
 npm install || exit
 
 # set build dir var for nextjs deployment and start build or fail early
-BUILD_DIR=.temp npm run build || exit
+export BUILD_DIR=.temp
+npm run build || exit
 
 # once we have built successfully, we need to remove the old .next folder and rename the temp folder to .next
 rm -rf .next
