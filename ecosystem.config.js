@@ -3,7 +3,7 @@ module.exports = {
 	apps: [
 		{
 			name: "frontend",
-			script: "npm",
+			script: "npm start",
 			args: "start",
 			env: {
 				NODE_ENV: "production",
@@ -18,8 +18,8 @@ module.exports = {
 			ref: "origin/staging",
 			repo: "git@github.com:MakanaMakesStuff/Portfolio-2025.git",
 			path: "/home/frontend",
-			"post-setup": "cd ~/source && yarn install",
-			"post-deploy": "cd ~/source && sh scripts/deploy.sh staging",
+			"post-setup": "npm install || exit",
+			"post-deploy": "sh scripts/deploy.sh staging",
 		},
 	},
 }
