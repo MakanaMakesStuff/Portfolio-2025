@@ -7,7 +7,7 @@ if [! -d ".temp" ]; then
 fi
 
 # try to install deps or fail early - Should be done in post setup unless you have specific needs for it here
-# npm install || exit
+npm install || exit
 
 # set build dir var for nextjs deployment and start build or fail early
 BUILD_DIR=.temp npm run build || exit
