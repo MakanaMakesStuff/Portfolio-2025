@@ -17,9 +17,9 @@ module.exports = {
 			host: ["138.197.114.200"],
 			ref: "origin/staging",
 			repo: "git@github.com:MakanaMakesStuff/Portfolio-2025.git",
-			path: "/home/frontend",
-			"post-setup": "npm install || exit",
-			"post-deploy": "sh scripts/deploy.sh staging",
+			path: "/home/portfolio",
+			"post-setup": "cd ./source && npm install || exit",
+			"post-deploy": "cd ./source && sh scripts/deploy.sh staging",
 		},
 	},
 }
