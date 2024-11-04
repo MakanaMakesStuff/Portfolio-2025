@@ -1,7 +1,7 @@
 echo "Deployment started...";
 
 # need to check if build temp exists before creating a new one
-if [! -d ".temp" ]; then
+if [ ! -d ".temp" ]; then
 	echo "Creating temporary build folder.."
 	mkdir .temp
 fi
