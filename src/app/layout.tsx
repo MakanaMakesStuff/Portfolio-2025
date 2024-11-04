@@ -1,4 +1,5 @@
 "use client"
+import "@fortawesome/fontawesome-free/css/all.min.css"
 import "../styles/global.scss"
 import AppProvider from "../utilities/context/App"
 import { ApolloProvider } from "@apollo/client"
