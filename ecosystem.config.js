@@ -19,8 +19,6 @@ module.exports = {
 			repo: "git@github.com:MakanaMakesStuff/Portfolio-2025.git",
 			path: "/home/portfolio",
 			"post-deploy": "sh scripts/deploy.sh staging",
-			// "post-setup": "cd ./source && npm install || exit",
-			// "post-deploy": "cd ./source && sh scripts/deploy.sh staging",
 		},
 	},
 }
