@@ -1,10 +1,7 @@
-const { cwd } = require("process")
-
 // ecosystem.config.js
 module.exports = {
 	apps: [
 		{
-			cwd: ".",
 			name: "frontend",
 			script: "npm run start",
 			args: "start",
