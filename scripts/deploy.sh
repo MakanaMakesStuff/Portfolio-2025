@@ -3,6 +3,7 @@ echo "Deployment started...";
 # try to install deps or fail early - Should be done in post setup unless you have specific needs for it here
 npm install || exit
 npm run build || exit
+echo "Build Complete"
 
 # copy the pm2 source to the correct root of our folder
 cp -r ./source/* ./
