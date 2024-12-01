@@ -1,9 +1,11 @@
 import Header from "@/components/Header"
 import OnScroll from "@/components/OnScroll"
 import Projects from "@/components/Projects"
+import Scroller from "@/components/Scroller"
 import style from "@/styles/pages/home.module.scss"
 import client from "@/utilities/Apollo"
 import { gql } from "@apollo/client"
+import { useCallback, useEffect } from "react"
 
 export interface PageI {
 	id: string
@@ -46,41 +48,62 @@ export default async function Home() {
 
 	const myWork = children.find((p) => p.slug == "my-work")
 
+	const contact = children.find((p) => p.slug == "contact")
+
 	const projects: PostI[] = data?.posts?.nodes ?? []
 
 	return (
-		<div className={style.page}>
-			<Header id="main-menu" className={style.header} />
+		<Scroller className={style.page}>
+			<>
+				<Header id="main-menu" className={style.header} />
 
-			<OnScroll id={myInfo?.slug!} animation="fadeInTop" persist={false}>
-				<section className={`${style.myInfo} cap-width`} id={myInfo?.slug}>
-					<h1
-						dangerouslySetInnerHTML={{ __html: myInfo?.title! }}
-						className={style.title}
-					></h1>
-
-					<div
-						dangerouslySetInnerHTML={{ __html: myInfo?.content! }}
-						className={style.content}
-					></div>
-				</section>
-			</OnScroll>
-
-			<OnScroll id={myWork?.slug!} animation="fadeInTop" persist={false}>
-				<section className={style.myWork} id={myWork?.slug}>
-					<div className={style.info}>
+				<OnScroll id={myInfo?.slug!} animation="fadeIn" persist={false}>
+					<section className={`${style.myInfo} cap-width`} id={myInfo?.slug}>
 						<h1
-							dangerouslySetInnerHTML={{ __html: myWork?.title! }}
+							dangerouslySetInnerHTML={{ __html: myInfo?.title! }}
 							className={style.title}
 						></h1>
 
-						<span dangerouslySetInnerHTML={{ __html: myWork?.content! }}></span>
-					</div>
+						<div
+							dangerouslySetInnerHTML={{ __html: myInfo?.content! }}
+							className={style.content}
+						></div>
+					</section>
+				</OnScroll>
 
-					<Projects projects={projects} />
-				</section>
-			</OnScroll>
-		</div>
+				<OnScroll id={myWork?.slug!} animation="fadeIn" persist={false}>
+					<section className={style.myWork} id={myWork?.slug}>
+						<div className={style.info}>
+							<h1
+								dangerouslySetInnerHTML={{ __html: myWork?.title! }}
+								className={style.title}
+							></h1>
+
+							<span
+								dangerouslySetInnerHTML={{ __html: myWork?.content! }}
+							></span>
+						</div>
+
+						<Projects projects={projects} />
+					</section>
+				</OnScroll>
+
+				<OnScroll id={contact?.slug!} animation="fadeIn" persist={false}>
+					<section className={style.contact} id={contact?.slug}>
+						<div className={style.info}>
+							<h1
+								dangerouslySetInnerHTML={{ __html: contact?.title! }}
+								className={style.title}
+							></h1>
+
+							<span
+								dangerouslySetInnerHTML={{ __html: contact?.content! }}
+							></span>
+						</div>
+					</section>
+				</OnScroll>
+			</>
+		</Scroller>
 	)
 }
 

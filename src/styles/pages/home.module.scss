@@ -3,9 +3,11 @@
 
 .page {
 	@include flex();
-	min-height: 100%;
-	height: max-content;
+	height: 100vh;
+	width: 100%;
 	background: $primary-gradient;
+	overflow-y: auto;
+	position: fixed;
 
 	.loader {
 		margin: auto;
@@ -20,13 +22,13 @@
 	section {
 		opacity: 0;
 		padding: 1em;
-		height: calc(100vh - 8em);
+		min-height: 100vh;
+		@include flex(column, center, center);
 	}
 
 	section.myInfo {
 		margin-left: auto;
 		margin-right: auto;
-		@include flex(column, center, center);
 
 		.content {
 			color: white;
@@ -45,9 +47,7 @@
 	section.myWork {
 		position: relative;
 		width: 100%;
-		min-height: max-content;
 		padding: 1em;
-		@include flex(column, flex-start, flex-start, 0em);
 
 		.info {
 			color: white;

@@ -1,0 +1,13 @@
+@import "@/styles/mixins.scss";
+@import "@/styles/brand";
+
+.scroller {
+	display: flex;
+	flex-direction: column;
+	overflow-y: scroll;
+	scroll-snap-type: y mandatory;
+
+	> * {
+		scroll-snap-align: start;
+	}
+}
