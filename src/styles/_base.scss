@@ -1,13 +1,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Antonio:wght@100..700&display=swap");
 
-.antonio {
+.antonio,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
 	font-family: "Antonio", sans-serif;
 	font-optical-sizing: auto;
 	font-style: normal;
 }
 
-.anonymous-pro {
+.anonymous-pro,
+span,
+p {
 	font-family: "Anonymous Pro", monospace;
 	font-weight: 400;
 	font-style: normal;
@@ -32,5 +40,5 @@
 }
 
 .cap-width {
-	max-width: 1600px;
+	max-width: 1200px;
 }

@@ -1,4 +1,16 @@
 $primary: #9f73ce;
-$primary-gradient: linear-gradient(214deg, #9f73ce 0%, #df9aff 100%);
+$primary-gradient: radial-gradient(
+	circle at center,
+	rgb(30, 15, 32) 0%,
+	#090909 60%
+);
 $secondary: #282828;
 $highlight: white;
+$border-gray: rgb(201, 201, 201);
+
+// scroller
+$primary-scrollbar-gradient: radial-gradient(
+	circle at center,
+	#9f73ce89 0%,
+	#00000000 100%
+);

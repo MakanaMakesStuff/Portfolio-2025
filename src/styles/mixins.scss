@@ -10,3 +10,20 @@
 	align-items: $align;
 	gap: $gap;
 }
+
+@mixin grid($j: baseline, $a: end, $g: 1em) {
+	display: grid;
+	justify-items: $j;
+	align-items: $a;
+	gap: $g;
+}
+
+@mixin glassy($color: rgba(white, 0.63), $blur: 4px) {
+	background: $color;
+	backdrop-filter: blur($blur);
+	-webkit-backdrop-filter: blur($blur);
+}
+
+@mixin shadow($color: black, $alpha: 1, $x: 0px, $y: 0px, $a: 3px, $b: 1px) {
+	box-shadow: $x $y $a $b rgba($color, $alpha);
+}
