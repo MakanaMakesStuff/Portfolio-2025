@@ -4,7 +4,6 @@ import "../styles/global.scss"
 import AppProvider from "../utilities/context/App"
 import { ApolloProvider } from "@apollo/client"
 import client from "@/utilities/Apollo"
-import Header from "@/components/Header"
 import AuthLayout from "@/components/Auth"
 
 export default function RootLayout({
@@ -18,10 +17,7 @@ export default function RootLayout({
 				<body>
 					<AppProvider>
 						<AuthLayout>
-							<>
-								<Header id="main-menu" />
-								{children}
-							</>
+							<>{children}</>
 						</AuthLayout>
 					</AppProvider>
 				</body>

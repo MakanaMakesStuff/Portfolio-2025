@@ -7,6 +7,7 @@ interface HeaderI {
 	id: string
 	idType?: "SLUG" | "DATABASE_ID" | "ID" | "LOCATION" | "NAME"
 	first?: number
+	className?: string
 }
 
 export interface MenuItem {
@@ -17,7 +18,12 @@ export interface MenuItem {
 	target: string
 }
 
-export default function Header({ id, idType = "SLUG", first = 100 }: HeaderI) {
+export default function Header({
+	id,
+	idType = "SLUG",
+	first = 100,
+	className = "",
+}: HeaderI) {
 	const { data, loading } = useQuery(MenuItems, {
 		variables: {
 			id,
@@ -31,7 +37,7 @@ export default function Header({ id, idType = "SLUG", first = 100 }: HeaderI) {
 	const menuItems: MenuItem[] = data?.menu?.menuItems?.nodes ?? []
 
 	return (
-		<header className={`${style.mainMenu} cap-width`}>
+		<header className={`${style.mainMenu} cap-width ${className}`}>
 			<p className={`${style.name} anonymous-pro`}>Makana O' Ke Akua Edwards</p>
 
 			<div className={style.links}>

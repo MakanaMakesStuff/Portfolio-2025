@@ -3,39 +3,55 @@
 
 .page {
 	@include flex();
-	min-height: 100vh;
+	min-height: 100%;
+	height: max-content;
+	background: $primary-gradient;
 
 	.loader {
 		margin: auto;
 	}
 
-	.main {
-		position: relative;
+	.title {
+		color: white;
+		text-align: center;
 		width: 100%;
-		height: 100%;
-		min-height: max-content;
-
-		.content {
-			padding: 2em;
-			@include flex(column, center, center);
-			color: white;
-			height: 100%;
-			width: 100%;
-		}
 	}
 
 	section {
+		opacity: 0;
+		padding: 1em;
+		height: calc(100vh - 8em);
+	}
+
+	section.myInfo {
+		margin-left: auto;
+		margin-right: auto;
 		@include flex(column, center, center);
-		width: 100%;
-		height: min-content;
-		padding: 2em;
 
-		&.light {
-			background-color: white;
+		.content {
+			color: white;
+			width: 100%;
+			@include shadow(white, 0.1, 0px, 0px, 3px, 1px);
+			@include glassy(rgba(0, 0, 0, 0.204));
+			padding: 1em;
+			border-radius: 10px;
 
-			h2 {
-				color: black;
+			figure {
+				margin: 0;
 			}
+		}
+	}
+
+	section.myWork {
+		position: relative;
+		width: 100%;
+		min-height: max-content;
+		padding: 1em;
+		@include flex(column, flex-start, flex-start, 0em);
+
+		.info {
+			color: white;
+			width: 100%;
 		}
 	}
 }

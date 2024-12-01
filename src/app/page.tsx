@@ -1,10 +1,9 @@
+import Header from "@/components/Header"
 import OnScroll from "@/components/OnScroll"
+import Projects from "@/components/Projects"
 import style from "@/styles/pages/home.module.scss"
 import client from "@/utilities/Apollo"
 import { gql } from "@apollo/client"
-import Spinner from "@/components/Spinner"
-import Border from "@/components/Border"
-import Splash from "@/components/Splash"
 
 export interface PageI {
 	id: string
@@ -15,8 +14,21 @@ export interface PageI {
 		}
 	}
 	title: string
+	slug: string
 	children: {
 		nodes: PageI[]
+	}
+}
+
+export interface PostI {
+	id: string
+	content: string
+	title: string
+	slug: string
+	featuredImage: {
+		node: {
+			mediaItemUrl: string
+		}
 	}
 }
 
@@ -28,48 +40,64 @@ export default async function Home() {
 
 	const page: PageI = data?.page
 
+	const children: PageI[] = page?.children.nodes ?? []
+
+	const myInfo = children.find((p) => p.slug == "my-info")
+
+	const myWork = children.find((p) => p.slug == "my-work")
+
+	const projects: PostI[] = data?.posts?.nodes ?? []
+
 	return (
 		<div className={style.page}>
-			<main className={style.main}>
-				{loading ? (
-					<Spinner className={style.loader} />
-				) : (
-					<OnScroll animation="fadeInBottom" id="hero" threshold={0}>
-						<div id="hero" className={style.content}>
-							<div
-								dangerouslySetInnerHTML={{ __html: page?.content }}
-								className={style.text}
-							/>
-						</div>
-					</OnScroll>
-				)}
-			</main>
+			<Header id="main-menu" className={style.header} />
 
-			{page?.children?.nodes?.map((item, i) => {
-				const splash = i % 2 == 0
+			<OnScroll id={myInfo?.slug!} animation="fadeInTop" persist={false}>
+				<section className={`${style.myInfo} cap-width`} id={myInfo?.slug}>
+					<h1
+						dangerouslySetInnerHTML={{ __html: myInfo?.title! }}
+						className={style.title}
+					></h1>
 
-				return splash ? (
-					<Splash key={item.id}>
-						<section
-							className={style.light}
-							dangerouslySetInnerHTML={{ __html: item.content }}
-							key={item.id}
-						/>
-					</Splash>
-				) : (
-					<section
-						className={style.light}
-						dangerouslySetInnerHTML={{ __html: item.content }}
-						key={item.id}
-					/>
-				)
-			})}
+					<div
+						dangerouslySetInnerHTML={{ __html: myInfo?.content! }}
+						className={style.content}
+					></div>
+				</section>
+			</OnScroll>
+
+			<OnScroll id={myWork?.slug!} animation="fadeInTop" persist={false}>
+				<section className={style.myWork} id={myWork?.slug}>
+					<div className={style.info}>
+						<h1
+							dangerouslySetInnerHTML={{ __html: myWork?.title! }}
+							className={style.title}
+						></h1>
+
+						<span dangerouslySetInnerHTML={{ __html: myWork?.content! }}></span>
+					</div>
+
+					<Projects projects={projects} />
+				</section>
+			</OnScroll>
 		</div>
 	)
 }
 
 const PageQuery = gql`
 	query HomePage {
+		posts(where: { categoryName: "project" }) {
+			nodes {
+				id
+				title
+				content
+				featuredImage {
+					node {
+						mediaItemUrl
+					}
+				}
+			}
+		}
 		page(id: "home", idType: URI) {
 			id
 			title
@@ -80,6 +108,12 @@ const PageQuery = gql`
 						id
 						title
 						content
+						slug
+						featuredImage {
+							node {
+								mediaItemUrl
+							}
+						}
 					}
 				}
 			}

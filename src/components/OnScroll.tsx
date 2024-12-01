@@ -7,6 +7,7 @@ export interface OnScrollProps {
 	id: string
 	animation?:
 		| "fadeIn"
+		| "fadeOut"
 		| "fadeInZoom"
 		| "fadeInTop"
 		| "fadeInBottom"
@@ -49,7 +50,7 @@ export default function OnScroll({
 	useLayoutEffect(() => {
 		const el = document.querySelector(`#${id}`)
 
-		el?.setAttribute("style", "opacity: 0;")
+		// el?.setAttribute("style", "opacity: 0;")
 
 		if (el) {
 			if (typeof IntersectionObserver !== "undefined") {
@@ -57,13 +58,15 @@ export default function OnScroll({
 					(entries) => {
 						entries.forEach((entry) => {
 							if (type === "default") {
-								if (entry.isIntersecting)
+								if (entry.isIntersecting) {
 									entry.target.classList.add(
 										animation ? animations[animation] : classes!
 									)
-								else {
+									entry.target.classList.remove(animations["fadeOut"])
+								} else {
 									if (persist) return
 
+									entry.target.classList.add(animations["fadeOut"])
 									entry.target.classList.remove(
 										animation ? animations[animation] : classes!
 									)
@@ -81,6 +84,7 @@ export default function OnScroll({
 											children[i]?.classList.add(
 												animation ? animations[animation] : classes!
 											)
+											children[i]?.classList.remove(animations["fadeOut"])
 										}
 									else {
 										if (persist) return
@@ -88,6 +92,7 @@ export default function OnScroll({
 											children[i]?.classList.remove(
 												animation ? animations[animation] : classes!
 											)
+											children[i]?.classList.add(animations["fadeOut"])
 										}
 									}
 								}
@@ -100,6 +105,7 @@ export default function OnScroll({
 											children[i]?.classList.add(
 												animation ? animations[animation] : classes!
 											)
+											children[i]?.classList.remove(animations["fadeOut"])
 										}
 									else {
 										if (persist) return
@@ -107,6 +113,7 @@ export default function OnScroll({
 											children[i]?.classList.remove(
 												animation ? animations[animation] : classes!
 											)
+											children[i]?.classList.add(animations["fadeOut"])
 										}
 									}
 								}
