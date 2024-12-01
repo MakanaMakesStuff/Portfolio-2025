@@ -6,7 +6,9 @@
 	@include flex(row, space-between, center);
 	width: 100%;
 	top: 0;
-	position: sticky;
+	left: 0;
+	right: 0;
+	position: fixed;
 	z-index: 100;
 	margin-left: auto;
 	margin-right: auto;

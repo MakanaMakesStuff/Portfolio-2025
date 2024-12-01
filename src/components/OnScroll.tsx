@@ -1,5 +1,5 @@
 "use client"
-import { ReactElement, useEffect, useLayoutEffect } from "react"
+import { ReactElement, useLayoutEffect } from "react"
 import animations from "@/styles/components/OnScroll.module.scss"
 
 export interface OnScrollProps {
@@ -49,8 +49,6 @@ export default function OnScroll({
 
 	useLayoutEffect(() => {
 		const el = document.querySelector(`#${id}`)
-
-		// el?.setAttribute("style", "opacity: 0;")
 
 		if (el) {
 			if (typeof IntersectionObserver !== "undefined") {
