@@ -2,7 +2,9 @@
 @use "@/styles/brand";
 
 .page {
-	@include mixins.flex();
+	@include mixins.grid();
+	grid-template-columns: 1fr;
+	grid-auto-rows: 1fr;
 	height: 100vh;
 	width: 100%;
 	background: brand.$primary-gradient;
@@ -24,8 +26,10 @@
 		opacity: 0;
 		padding: 1em;
 		min-height: 100vh;
+		height: max-content;
 		width: 100%;
 		@include mixins.flex(column, center, center);
+		margin: auto;
 
 		.info {
 			color: white;
@@ -45,14 +49,23 @@
 			padding: 1em;
 			border-radius: 10px;
 
-			figure {
-				margin: 0;
+			> div {
+				@include mixins.flex(row);
+				gap: 3em;
+
+				figure {
+					margin: 0;
+					min-width: 250px;
+					border-radius: 5px;
+					overflow: hidden;
+				}
+
+				> div {
+					padding: 0;
+				}
 			}
 		}
 	}
-
-	// section.myWork {
-	// }
 
 	section.contact {
 		.form {
@@ -85,6 +98,22 @@
 				align-self: flex-end;
 				padding: 0.25em 1em;
 				font-weight: bold;
+			}
+		}
+	}
+
+	@media screen and (max-width: 600px) {
+		section {
+			margin-top: 3em;
+			min-height: max-content;
+		}
+
+		section.myInfo {
+			.content {
+				> div {
+					gap: 0em;
+					flex-direction: column;
+				}
 			}
 		}
 	}

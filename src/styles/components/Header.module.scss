@@ -28,4 +28,12 @@
 			color: white;
 		}
 	}
+
+	@media screen and (max-width: 600px) {
+		justify-content: center;
+
+		.name {
+			display: none;
+		}
+	}
 }
