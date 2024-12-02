@@ -115,7 +115,19 @@
 	}
 
 	@media screen and (max-width: 800px) {
+		position: relative;
 		@include mixins.flex(column-reverse, center, center, 1em);
 		grid-template-columns: unset;
+
+		.navigation {
+			position: absolute;
+			top: calc((50% * 0.6675) - 1.5em);
+			left: 0;
+			right: 0;
+		}
+
+		.info {
+			aspect-ratio: 1;
+		}
 	}
 }

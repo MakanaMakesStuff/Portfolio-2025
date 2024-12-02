@@ -9,7 +9,7 @@ import { gql } from "@apollo/client"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-	title: "Home Page",
+	title: "Portfolio 2025",
 }
 export interface PageI {
 	id: string
