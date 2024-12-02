@@ -1,11 +1,11 @@
-@import "@/styles/mixins";
-@import "@/styles/brand";
+@use "@/styles/mixins";
+@use "@/styles/brand";
 
 .page {
-	@include flex();
+	@include mixins.flex();
 	height: 100vh;
 	width: 100%;
-	background: $primary-gradient;
+	background: brand.$primary-gradient;
 	overflow-y: auto;
 	position: fixed;
 
@@ -23,7 +23,7 @@
 		opacity: 0;
 		padding: 1em;
 		min-height: 100vh;
-		@include flex(column, center, center);
+		@include mixins.flex(column, center, center);
 	}
 
 	section.myInfo {
@@ -33,8 +33,8 @@
 		.content {
 			color: white;
 			width: 100%;
-			@include shadow(white, 0.1, 0px, 0px, 3px, 1px);
-			@include glassy(rgba(0, 0, 0, 0.204));
+			@include mixins.shadow(white, 0.1, 0px, 0px, 3px, 1px);
+			@include mixins.glassy(rgba(0, 0, 0, 0.204));
 			padding: 1em;
 			border-radius: 10px;
 

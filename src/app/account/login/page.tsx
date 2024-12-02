@@ -59,7 +59,9 @@ export default function LoginPage() {
 					) : displayStatus ? (
 						<>
 							<h4
-								dangerouslySetInnerHTML={{ __html: displayStatus.message }}
+								dangerouslySetInnerHTML={{
+									__html: displayStatus.message ?? "",
+								}}
 							></h4>
 
 							<button type="button" onClick={() => setDisplayStatus(undefined)}>

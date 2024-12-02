@@ -45,7 +45,7 @@ export default function Projects({
 		<div className={`${style.slideshow} cap-width`}>
 			<div
 				className={style.info}
-				dangerouslySetInnerHTML={{ __html: projects[step]?.content }}
+				dangerouslySetInnerHTML={{ __html: projects[step]?.content ?? "" }}
 			></div>
 
 			<div className={style.feed}>

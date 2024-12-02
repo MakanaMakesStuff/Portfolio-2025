@@ -1,9 +1,8 @@
-@import "@/styles/mixins.scss";
-@import "@/styles/brand";
+@use "@/styles/mixins.scss";
+@use "@/styles/brand";
 
 .scroller {
-	display: flex;
-	flex-direction: column;
+	@include mixins.flex();
 	overflow-y: scroll;
 	scroll-snap-type: y mandatory;
 
