@@ -1,3 +1,4 @@
+import ContactForm from "@/components/ContactForm"
 import Header from "@/components/Header"
 import OnScroll from "@/components/OnScroll"
 import Projects from "@/components/Projects"
@@ -5,8 +6,11 @@ import Scroller from "@/components/Scroller"
 import style from "@/styles/pages/home.module.scss"
 import client from "@/utilities/Apollo"
 import { gql } from "@apollo/client"
-import { useCallback, useEffect } from "react"
+import { Metadata } from "next"
 
+export const metadata: Metadata = {
+	title: "Home Page",
+}
 export interface PageI {
 	id: string
 	content: string
@@ -44,9 +48,9 @@ export default async function Home() {
 
 	const children: PageI[] = page?.children.nodes ?? []
 
-	const myInfo = children.find((p) => p.slug == "my-info")
+	const myInfo = children.find((p) => p.slug == "info")
 
-	const myWork = children.find((p) => p.slug == "my-work")
+	const myWork = children.find((p) => p.slug == "work")
 
 	const contact = children.find((p) => p.slug == "contact")
 
@@ -100,6 +104,8 @@ export default async function Home() {
 								dangerouslySetInnerHTML={{ __html: contact?.content ?? "" }}
 							></span>
 						</div>
+
+						<ContactForm className={style.form} />
 					</section>
 				</OnScroll>
 			</>
@@ -109,6 +115,11 @@ export default async function Home() {
 
 const PageQuery = gql`
 	query HomePage {
+		viewer {
+			firstName
+			lastName
+			email
+		}
 		posts(where: { categoryName: "project" }) {
 			nodes {
 				id
