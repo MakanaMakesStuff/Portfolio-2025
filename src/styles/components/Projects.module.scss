@@ -105,7 +105,7 @@
 			width: 0.75em;
 			border: none;
 			border-radius: 50%;
-			background-color: rgba(255, 255, 255, 0.231);
+			background-color: rgba(255, 255, 255, 0.25);
 			cursor: pointer;
 
 			&[data-selected="true"] {
@@ -121,13 +121,9 @@
 
 		.navigation {
 			position: absolute;
-			top: calc((50% * 0.6675) - 1.5em);
+			top: calc(50% - 2.75em);
 			left: 0;
 			right: 0;
-		}
-
-		.info {
-			aspect-ratio: 1;
 		}
 	}
 }
