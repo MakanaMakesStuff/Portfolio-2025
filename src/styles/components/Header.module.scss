@@ -1,9 +1,9 @@
-@import "@/styles/mixins.scss";
-@import "@/styles/brand";
+@use "@/styles/mixins.scss";
+@use "@/styles/brand";
 
 .mainMenu {
 	padding: 1em;
-	@include flex(row, space-between, center);
+	@include mixins.flex(row, space-between, center);
 	width: 100%;
 	top: 0;
 	left: 0;
@@ -18,9 +18,9 @@
 	}
 
 	.links {
-		@include shadow(white, 0.1, 0px, 0px, 3px, 1px);
-		@include glassy(rgba(0, 0, 0, 0.204));
-		@include flex(row, space-between, flex-start, 1.5em);
+		@include mixins.shadow(white, 0.1, 0px, 0px, 3px, 1px);
+		@include mixins.glassy(rgba(0, 0, 0, 0.204));
+		@include mixins.flex(row, space-between, flex-start, 1.5em);
 		padding: 0.75em 1em;
 		border-radius: 3px;
 

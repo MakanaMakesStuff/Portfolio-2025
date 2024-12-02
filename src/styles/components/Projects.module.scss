@@ -1,8 +1,8 @@
-@import "@/styles/mixins.scss";
-@import "@/styles/brand";
+@use "@/styles/mixins.scss";
+@use "@/styles/brand";
 
 .slideshow {
-	@include grid(center, center, 1em);
+	@include mixins.grid(center, center, 1em);
 	grid-template-columns: 1fr 1fr;
 	width: 100%;
 	margin-left: auto;
@@ -10,8 +10,8 @@
 
 	.info {
 		color: white;
-		@include shadow(white, 0.1, 0px, 0px, 3px, 1px);
-		@include glassy(rgba(0, 0, 0, 0.204));
+		@include mixins.shadow(white, 0.1, 0px, 0px, 3px, 1px);
+		@include mixins.glassy(rgba(0, 0, 0, 0.204));
 		flex-wrap: wrap;
 		border-radius: 10px;
 		padding: 1em;
@@ -24,7 +24,7 @@
 
 	.feed {
 		position: relative;
-		@include flex(row);
+		@include mixins.flex(row);
 		width: 100%;
 		max-width: 600px;
 		aspect-ratio: 1.7777;
@@ -34,7 +34,7 @@
 			position: absolute;
 			top: 0;
 			left: 0;
-			@include flex(column, center, center);
+			@include mixins.flex(column, center, center);
 			min-width: 100%;
 			height: 100%;
 			border-radius: 10px;
@@ -95,7 +95,7 @@
 
 	.navigation {
 		grid-column: 1 / span 2;
-		@include flex(row, center, center);
+		@include mixins.flex(row, center, center);
 		padding: 1em;
 		margin: auto;
 
@@ -115,7 +115,7 @@
 	}
 
 	@media screen and (max-width: 800px) {
-		@include flex(column-reverse, center, center, 1em);
+		@include mixins.flex(column-reverse, center, center, 1em);
 		grid-template-columns: unset;
 	}
 }

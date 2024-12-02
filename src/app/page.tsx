@@ -60,12 +60,12 @@ export default async function Home() {
 				<OnScroll id={myInfo?.slug!} animation="fadeIn" persist={false}>
 					<section className={`${style.myInfo} cap-width`} id={myInfo?.slug}>
 						<h1
-							dangerouslySetInnerHTML={{ __html: myInfo?.title! }}
+							dangerouslySetInnerHTML={{ __html: myInfo?.title ?? "" }}
 							className={style.title}
 						></h1>
 
 						<div
-							dangerouslySetInnerHTML={{ __html: myInfo?.content! }}
+							dangerouslySetInnerHTML={{ __html: myInfo?.content ?? "" }}
 							className={style.content}
 						></div>
 					</section>
@@ -75,12 +75,12 @@ export default async function Home() {
 					<section className={style.myWork} id={myWork?.slug}>
 						<div className={style.info}>
 							<h1
-								dangerouslySetInnerHTML={{ __html: myWork?.title! }}
+								dangerouslySetInnerHTML={{ __html: myWork?.title ?? "" }}
 								className={style.title}
 							></h1>
 
 							<span
-								dangerouslySetInnerHTML={{ __html: myWork?.content! }}
+								dangerouslySetInnerHTML={{ __html: myWork?.content ?? "" }}
 							></span>
 						</div>
 
@@ -92,12 +92,12 @@ export default async function Home() {
 					<section className={style.contact} id={contact?.slug}>
 						<div className={style.info}>
 							<h1
-								dangerouslySetInnerHTML={{ __html: contact?.title! }}
+								dangerouslySetInnerHTML={{ __html: contact?.title ?? "" }}
 								className={style.title}
 							></h1>
 
 							<span
-								dangerouslySetInnerHTML={{ __html: contact?.content! }}
+								dangerouslySetInnerHTML={{ __html: contact?.content ?? "" }}
 							></span>
 						</div>
 					</section>

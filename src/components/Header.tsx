@@ -47,7 +47,7 @@ export default function Header({
 						key={item.id}
 						className={item.cssClasses?.join(" ")}
 					>
-						<span dangerouslySetInnerHTML={{ __html: item.label }}></span>
+						<span dangerouslySetInnerHTML={{ __html: item.label ?? "" }}></span>
 					</Link>
 				))}
 			</div>

@@ -1,7 +1,7 @@
-@import "wp-styles/wp-blocks";
-@import "wp-styles/wp-variables";
-@import "_base";
-@import "@/styles/brand";
+@use "@/styles/wp-styles/wp-blocks";
+@use "@/styles/wp-styles/wp-variables";
+@use "@/styles/base";
+@use "@/styles/brand";
 
 html,
 body {
@@ -39,7 +39,7 @@ a {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-	background: $primary-scrollbar-gradient;
+	background: brand.$primary-scrollbar-gradient;
 	border-radius: 5px;
 }
 
