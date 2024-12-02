@@ -20,10 +20,17 @@
 	}
 
 	section {
+		position: relative;
 		opacity: 0;
 		padding: 1em;
 		min-height: 100vh;
+		width: 100%;
 		@include mixins.flex(column, center, center);
+
+		.info {
+			color: white;
+			width: 100%;
+		}
 	}
 
 	section.myInfo {
@@ -44,14 +51,41 @@
 		}
 	}
 
-	section.myWork {
-		position: relative;
-		width: 100%;
-		padding: 1em;
+	// section.myWork {
+	// }
 
-		.info {
-			color: white;
+	section.contact {
+		.form {
+			padding: 1em;
+			border-radius: 10px;
+			@include mixins.shadow(white, 0.1, 0px, 0px, 3px, 1px);
+			@include mixins.glassy(rgba(0, 0, 0, 0.204));
+			@include mixins.flex();
 			width: 100%;
+			max-width: 400px;
+
+			input,
+			textarea {
+				padding: 0.5em;
+				width: 100%;
+				border-radius: 5px;
+				border: none;
+			}
+
+			textarea {
+				resize: vertical;
+				min-height: 100px;
+				max-height: 400px;
+			}
+
+			button {
+				border-radius: 5px;
+				cursor: pointer;
+				border: none;
+				align-self: flex-end;
+				padding: 0.25em 1em;
+				font-weight: bold;
+			}
 		}
 	}
 }
