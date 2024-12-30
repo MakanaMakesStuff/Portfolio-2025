@@ -4,7 +4,13 @@ import "../styles/global.scss"
 import AppProvider from "../utilities/context/App"
 import { ApolloProvider } from "@apollo/client"
 import client from "@/utilities/Apollo"
-import AuthLayout from "@/components/Auth"
+import DefaultLayout from "@/components/Default"
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter"
+import { ThemeProvider } from "@mui/material"
+import getTheme from "@/utilities/theme"
+import Header from "@/components/Header"
+
+const theme = getTheme()
 
 export default function RootLayout({
 	children,
@@ -12,16 +18,18 @@ export default function RootLayout({
 	children: React.ReactNode
 }>) {
 	return (
-		<ApolloProvider client={client}>
-			<html lang="en">
-				<body>
-					<AppProvider>
-						<AuthLayout>
-							<>{children}</>
-						</AuthLayout>
-					</AppProvider>
-				</body>
-			</html>
-		</ApolloProvider>
+		<AppRouterCacheProvider options={{ enableCssLayer: true }}>
+			<ThemeProvider theme={theme}>
+				<ApolloProvider client={client}>
+					<html lang="en">
+						<body>
+							<AppProvider>
+								<DefaultLayout>{children}</DefaultLayout>
+							</AppProvider>
+						</body>
+					</html>
+				</ApolloProvider>
+			</ThemeProvider>
+		</AppRouterCacheProvider>
 	)
 }
