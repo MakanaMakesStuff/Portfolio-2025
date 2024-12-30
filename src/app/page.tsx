@@ -1,11 +1,10 @@
 import ContactForm from "@/components/ContactForm"
 import Header from "@/components/Header"
-import OnScroll from "@/components/OnScroll"
-import Projects from "@/components/Projects"
-import Scroller from "@/components/Scroller"
-import style from "@/styles/pages/home.module.scss"
+import Intersect from "@/components/Intersect"
 import client from "@/utilities/Apollo"
+import getTheme, { CustomThemeOptions } from "@/utilities/theme"
 import { gql } from "@apollo/client"
+import { Box, Stack, Typography } from "@mui/material"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -52,64 +51,90 @@ export default async function Home() {
 
 	const myWork = children.find((p) => p.slug == "work")
 
-	const contact = children.find((p) => p.slug == "contact")
-
-	const projects: PostI[] = data?.posts?.nodes ?? []
-
 	return (
-		<Scroller className={style.page}>
+		<Stack
+			gap="2em"
+			sx={{
+				padding: "1.5em",
+				figure: {
+					overflow: "hidden",
+					borderRadius: "3px",
+				},
+			}}
+		>
 			<>
-				<Header id="main-menu" className={style.header} />
-
-				<OnScroll id={myInfo?.slug!} animation="fadeIn" persist={false}>
-					<section className={`${style.myInfo} cap-width`} id={myInfo?.slug}>
-						<h1
-							dangerouslySetInnerHTML={{ __html: myInfo?.title ?? "" }}
-							className={style.title}
-						></h1>
-
-						<div
+				<Stack
+					justifyContent="flex-start"
+					alignItems="center"
+					sx={{
+						minHeight: "100vh",
+						width: "100%",
+					}}
+				>
+					<Intersect
+						sx={{
+							maxWidth: "1100px",
+							margin: "auto",
+						}}
+						threshold={0}
+					>
+						<Box
+							sx={{
+								overflow: "hidden",
+								color: "white",
+							}}
 							dangerouslySetInnerHTML={{ __html: myInfo?.content ?? "" }}
-							className={style.content}
-						></div>
-					</section>
-				</OnScroll>
+							id={myInfo?.slug}
+						></Box>
+					</Intersect>
+				</Stack>
 
-				<OnScroll id={myWork?.slug!} animation="fadeIn" persist={false}>
-					<section className={style.myWork} id={myWork?.slug}>
-						<div className={style.info}>
-							<h1
-								dangerouslySetInnerHTML={{ __html: myWork?.title ?? "" }}
-								className={style.title}
-							></h1>
+				<Intersect
+					sx={{
+						maxWidth: "1100px",
+						margin: "auto",
+					}}
+					threshold={0.1}
+				>
+					<Stack
+						justifyContent="flex-start"
+						alignItems="center"
+						gap="3em"
+						sx={{
+							minHeight: "100vh",
+							width: "100%",
+							color: "white",
+						}}
+						dangerouslySetInnerHTML={{ __html: myWork?.content ?? "" }}
+						id={myWork?.slug}
+					></Stack>
+				</Intersect>
 
-							<span
-								dangerouslySetInnerHTML={{ __html: myWork?.content ?? "" }}
-							></span>
-						</div>
+				<Stack
+					sx={{
+						maxWidth: "1100px",
+						margin: "auto",
+						minHeight: "100vh",
+						width: "100%",
+					}}
+				>
+					<Intersect
+						threshold={0.3}
+						m="auto"
+						sx={{
+							h2: {
+								color: "white",
+								textAlign: "center",
+							},
+						}}
+					>
+						<h2>Get in Touch</h2>
 
-						<Projects projects={projects} />
-					</section>
-				</OnScroll>
-
-				<OnScroll id={contact?.slug!} animation="fadeIn" persist={false}>
-					<section className={style.contact} id={contact?.slug}>
-						<div className={style.info}>
-							<h1
-								dangerouslySetInnerHTML={{ __html: contact?.title ?? "" }}
-								className={style.title}
-							></h1>
-
-							<span
-								dangerouslySetInnerHTML={{ __html: contact?.content ?? "" }}
-							></span>
-						</div>
-
-						<ContactForm className={style.form} />
-					</section>
-				</OnScroll>
+						<ContactForm id="contact" />
+					</Intersect>
+				</Stack>
 			</>
-		</Scroller>
+		</Stack>
 	)
 }
 
