@@ -18,6 +18,13 @@ import { CustomThemeOptions } from "@/utilities/theme"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faBars, faBurger, faXmark } from "@fortawesome/free-solid-svg-icons"
 import { useState } from "react"
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuPortal,
+	DropdownMenuTrigger,
+} from "@radix-ui/react-dropdown-menu"
 
 interface HeaderI {
 	id: string
@@ -72,69 +79,31 @@ export default function Header({
 			zIndex={1000000}
 			{...props}
 		>
-			<Box
-				component="p"
-				sx={(theme: CustomThemeOptions) => ({
-					color: theme.brand?.primary,
-				})}
-			>
-				Makana O' Ke Akua Edwards
-			</Box>
+			<p className="text-primary">Makana O' Ke Akua Edwards</p>
 
 			{mobile ? (
-				<Box>
-					<Button
-						sx={(theme: CustomThemeOptions) => ({
-							color: theme.brand?.primary,
-							minWidth: 0,
-						})}
-						onClick={() => setOpened((prev) => !prev)}
-					>
-						<FontAwesomeIcon icon={opened ? faXmark : faBars} />
-					</Button>
+				<DropdownMenu onOpenChange={setOpened}>
+					<DropdownMenuTrigger>
+						<FontAwesomeIcon
+							icon={opened ? faXmark : faBars}
+							className="text-primary"
+						/>
+					</DropdownMenuTrigger>
 
-					<Popper
-						sx={{
-							position: "absolute",
-							top: 0,
-							right: 0,
-							margin: "3.5em 1.5em auto auto",
-							width: "100%",
-							maxWidth: "200px",
-						}}
-						open={opened}
-						transition
-					>
-						<ClickAwayListener onClickAway={() => setOpened(false)}>
-							<Paper
-								sx={(theme: CustomThemeOptions) => ({
-									backgroundColor: theme.brand?.primary,
-									color: "white",
-									padding: "1em",
-								})}
-							>
-								<>
-									{menuItems.map((item) => (
-										<Link
-											href={item.path}
-											key={item.id}
-											className={item.cssClasses?.join(" ")}
-											style={{
-												display: "block",
-												width: "100%",
-												padding: "0.5em",
-											}}
-										>
-											<span
-												dangerouslySetInnerHTML={{ __html: item.label ?? "" }}
-											></span>
-										</Link>
-									))}
-								</>
-							</Paper>
-						</ClickAwayListener>
-					</Popper>
-				</Box>
+					<DropdownMenuPortal>
+						<DropdownMenuContent className="flex flex-col gap-1 bg-primary py-1 px-3 rounded-sm text-white mr-4">
+							{menuItems.map((item) => (
+								<DropdownMenuItem key={item.id}>
+									<Link href={item.path} className={item.cssClasses?.join(" ")}>
+										<span
+											dangerouslySetInnerHTML={{ __html: item.label ?? "" }}
+										></span>
+									</Link>
+								</DropdownMenuItem>
+							))}
+						</DropdownMenuContent>
+					</DropdownMenuPortal>
+				</DropdownMenu>
 			) : (
 				<Paper
 					sx={(theme: CustomThemeOptions) => ({
