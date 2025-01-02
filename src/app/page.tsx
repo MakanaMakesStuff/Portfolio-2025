@@ -1,10 +1,8 @@
 import ContactForm from "@/components/ContactForm"
-import Header from "@/components/Header"
 import Intersect from "@/components/Intersect"
 import client from "@/utilities/Apollo"
-import getTheme, { CustomThemeOptions } from "@/utilities/theme"
 import { gql } from "@apollo/client"
-import { Box, Stack, Typography } from "@mui/material"
+import { Box, Stack } from "@mui/material"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
