@@ -26,8 +26,56 @@ const theme: CustomThemeOptions = {
 			"radial-gradient(circle at center, #9f73ce89 0%, #00000000 100%)",
 	},
 	typography: {
+		fontFamily: '"Anonymous Pro", monospace',
 		h1: {
-			fontSize: "2.5rem",
+			fontFamily: '"Antonio", sans-serif',
+			fontOpticalSizing: "auto",
+			fontStyle: "normal",
+		},
+		h2: {
+			fontFamily: '"Anonymous Pro", sans-serif',
+			fontOpticalSizing: "auto",
+			fontStyle: "normal",
+		},
+		h3: {
+			fontFamily: '"Antonio", sans-serif',
+			fontOpticalSizing: "auto",
+			fontStyle: "normal",
+		},
+		h4: {
+			fontFamily: '"Antonio", sans-serif',
+			fontOpticalSizing: "auto",
+			fontStyle: "normal",
+		},
+		h5: {
+			fontFamily: '"Antonio", sans-serif',
+			fontOpticalSizing: "auto",
+			fontStyle: "normal",
+		},
+		h6: {
+			fontFamily: '"Antonio", sans-serif',
+			fontOpticalSizing: "auto",
+			fontStyle: "normal",
+		},
+		body1: {
+			fontFamily: '"Anonymous Pro", monospace',
+			fontWeight: 400,
+			fontStyle: "normal",
+		},
+		subtitle1: {
+			fontFamily: '"Anonymous Pro", monospace',
+			fontWeight: 700,
+			fontStyle: "normal",
+		},
+		subtitle2: {
+			fontFamily: '"Anonymous Pro", monospace',
+			fontWeight: 400,
+			fontStyle: "italic",
+		},
+		button: {
+			fontFamily: '"Anonymous Pro", monospace',
+			fontWeight: 400,
+			fontStyle: "normal",
 		},
 	},
 }
