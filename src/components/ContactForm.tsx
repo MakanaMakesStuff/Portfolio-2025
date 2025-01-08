@@ -1,7 +1,6 @@
 "use client"
 import Spinner from "@/components/Spinner"
-import { CustomThemeOptions } from "@/utilities/theme"
-import { Box, StackProps, Stack } from "@mui/material"
+import { Box, StackProps, Stack, Button, Input } from "@mui/material"
 import { FormEvent, useState } from "react"
 
 export default function ContactForm({
@@ -43,54 +42,42 @@ export default function ContactForm({
 			flexDirection="column"
 			component="form"
 			onSubmit={handleForm}
-			sx={(theme: CustomThemeOptions) => ({
-				backgroundColor: "white",
+			className="bg-white"
+			sx={{
 				borderRadius: "3px",
 				padding: "1em",
 				gap: "0.5em",
 				width: "300px",
 				maxWidth: "100%",
-				color: theme.brand?.primary,
-
-				textarea: {
-					minHeight: "150px",
-					resize: "none",
-				},
-				button: {
-					backgroundColor: theme.brand?.primary,
-					color: "white",
-					border: "none",
-					borderRadius: "3px",
-					padding: "0.5em 1.5em",
-					width: "max-content",
-					alignSelf: "flex-end",
-					cursor: "pointer",
-					transition: "all 0.2s ease",
-					"&:hover": {
-						opacity: 0.9,
-					},
-					"&:active": {
-						transform: "scale(0.9)",
-						backgroundColor: "gray",
-					},
-				},
-			})}
+				fontSize: "1em",
+			}}
 			{...props}
 		>
 			{loading ? (
 				<Spinner />
 			) : (
 				<>
-					<input type="text" name="subject" placeholder="Subject" required />
+					<Input
+						className="bg-white shadow-lg py-1 px-2 rounded-sm"
+						type="text"
+						name="subject"
+						placeholder="Subject"
+						required
+					/>
 
-					<textarea
+					<Box
+						component="textarea"
+						className="shadow-lg rounded-sm resize-y min-h-32"
+						padding="0.5em !important"
 						name="message"
 						placeholder="Please add your message here"
 						minLength={20}
 						required
-					></textarea>
+					></Box>
 
-					<button>Send</button>
+					<Button className="bg-primary text-white rounded-sm py-1 w-max self-end transition-all cursor-pointer hover:opacity-90 active:scale-90 active:bg-gray-400">
+						Send
+					</Button>
 				</>
 			)}
 		</Stack>

@@ -2,14 +2,8 @@
 import { gql, useQuery } from "@apollo/client"
 import Link from "next/link"
 import {
-	Box,
-	Button,
-	ClickAwayListener,
-	Menu,
 	MenuItem,
-	MenuList,
 	Paper,
-	Popper,
 	Stack,
 	StackProps,
 	useMediaQuery,
@@ -70,7 +64,7 @@ export default function Header({
 			justifyContent="space-between"
 			alignItems="center"
 			gap="1.5em"
-			p="0.5em 1.5em"
+			p="1em 1.5em"
 			position={mobile ? "sticky" : "fixed"}
 			width="100%"
 			left={0}
@@ -83,26 +77,27 @@ export default function Header({
 
 			{mobile ? (
 				<DropdownMenu onOpenChange={setOpened}>
-					<DropdownMenuTrigger>
+					<DropdownMenuTrigger className="border-none bg-transparent text-lg outline-none">
 						<FontAwesomeIcon
 							icon={opened ? faXmark : faBars}
 							className="text-primary"
 						/>
 					</DropdownMenuTrigger>
 
-					<DropdownMenuPortal>
-						<DropdownMenuContent className="flex flex-col gap-1 bg-primary py-1 px-3 rounded-sm text-white mr-4">
-							{menuItems.map((item) => (
-								<DropdownMenuItem key={item.id}>
-									<Link href={item.path} className={item.cssClasses?.join(" ")}>
-										<span
-											dangerouslySetInnerHTML={{ __html: item.label ?? "" }}
-										></span>
-									</Link>
-								</DropdownMenuItem>
-							))}
-						</DropdownMenuContent>
-					</DropdownMenuPortal>
+					<DropdownMenuContent className="flex flex-col gap-1 bg-primary p-4 rounded-sm text-white mr-4 outline-none">
+						{menuItems.map((item) => (
+							<DropdownMenuItem className="outline-none" key={item.id}>
+								<Link
+									href={item.path}
+									className={`outline-none ${item.cssClasses?.join(" ")}`}
+								>
+									<span
+										dangerouslySetInnerHTML={{ __html: item.label ?? "" }}
+									></span>
+								</Link>
+							</DropdownMenuItem>
+						))}
+					</DropdownMenuContent>
 				</DropdownMenu>
 			) : (
 				<Paper

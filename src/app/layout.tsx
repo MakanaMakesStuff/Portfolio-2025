@@ -8,7 +8,6 @@ import DefaultLayout from "@/components/Default"
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter"
 import { ThemeProvider } from "@mui/material"
 import getTheme from "@/utilities/theme"
-import Header from "@/components/Header"
 
 const theme = getTheme()
 

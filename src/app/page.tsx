@@ -1,6 +1,7 @@
 import ContactForm from "@/components/ContactForm"
 import Intersect from "@/components/Intersect"
 import client from "@/utilities/Apollo"
+import getTheme, { CustomThemeOptions } from "@/utilities/theme"
 import { gql } from "@apollo/client"
 import { Box, Stack } from "@mui/material"
 import { Metadata } from "next"
@@ -49,14 +50,18 @@ export default async function Home() {
 
 	const myWork = children.find((p) => p.slug == "work")
 
+	const theme: CustomThemeOptions = getTheme()
+
 	return (
 		<Stack
 			gap="2em"
 			sx={{
-				padding: "1.5em",
 				figure: {
 					overflow: "hidden",
 					borderRadius: "3px",
+				},
+				h2: {
+					fontSize: "1.5em !important",
 				},
 			}}
 		>
@@ -64,23 +69,23 @@ export default async function Home() {
 				<Stack
 					justifyContent="flex-start"
 					alignItems="center"
+					className="bg-black"
 					sx={{
 						minHeight: "100vh",
 						width: "100%",
+						padding: "1em",
 					}}
 				>
 					<Intersect
 						sx={{
 							maxWidth: "1100px",
+							height: "max-content",
 							margin: "auto",
 						}}
 						threshold={0}
 					>
 						<Box
-							sx={{
-								overflow: "hidden",
-								color: "white",
-							}}
+							className="text-white p-4 bg-primary-gradient rounded-md"
 							dangerouslySetInnerHTML={{ __html: myInfo?.content ?? "" }}
 							id={myInfo?.slug}
 						></Box>
@@ -89,28 +94,36 @@ export default async function Home() {
 
 				<Intersect
 					sx={{
-						maxWidth: "1100px",
-						margin: "auto",
+						width: "100%",
+						padding: "1em",
 					}}
 					threshold={0.1}
 				>
 					<Stack
 						justifyContent="flex-start"
 						alignItems="center"
-						gap="3em"
+						gap="1em"
 						sx={{
 							minHeight: "100vh",
+							maxWidth: "1100px",
 							width: "100%",
 							color: "white",
+							margin: "auto",
 						}}
-						dangerouslySetInnerHTML={{ __html: myWork?.content ?? "" }}
 						id={myWork?.slug}
-					></Stack>
+					>
+						<h2 dangerouslySetInnerHTML={{ __html: myWork?.title ?? "" }}></h2>
+
+						<Box
+							dangerouslySetInnerHTML={{ __html: myWork?.content ?? "" }}
+							className="bg-primary-gradient p-8 rounded-md"
+						/>
+					</Stack>
 				</Intersect>
 
 				<Stack
+					className="bg-primary-gradient"
 					sx={{
-						maxWidth: "1100px",
 						margin: "auto",
 						minHeight: "100vh",
 						width: "100%",
